@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Tips in webapps
+    </title>
+</head>
+
+<body>
+
+    <h1>Rikriti shows tip amounts</h1>
+    <form>
+        <label for="base_amount">Enter base amount </label>
+        <input type="number" id="base_amount" name="base_amount" value=50> <br>
+        <label for="tip_percent">Enter tip percent </label>
+        <input type="number" id="tip_percent" name="tip_percent" value=15> <br>
+        <input type="button" onclick="tips()" value="Show tip">
+    </form>
+    <p id="result" style="font-weight: bold;">Result of tips</p>
+    <script>
+        function tips() {
+            let base_amount = parseFloat(document.getElementById("base_amount").value);
+            let tip = parseFloat(document.getElementById("tip_percent").value);
+            let out = document.getElementById("result");
+            let toShow = "";
+            for (let itr = 0; itr < 5; itr++) {
+                var calculatedTip = (base_amount * (tip + itr * 4)) / 100;
+                toShow += (tip + itr * 4) + "% is " + calculatedTip + "; ";
+                console.log(calculatedTip);
+                console.log(tip + itr * 4);
+            }
+            toShow = "Tips are: " + toShow;
+            document.getElementById("result").innerHTML = toShow;
+        }
+        function chooseOp() {
+        let baseAmount = parseFloat(document.getElementById("base_amount").value);
+        let tipPercent = parseFloat(document.getElementById("tip_percent").value);
+        let out = document.getElementById("calresult");
+            var value;
+            let myOutput = "";
+            if (document.getElementById("sum").checked) {
+                value = baseAmount + tipPercent;
+                myOutput = "sum of " + baseAmount + " and " + tipPercent + " is " + value;
+            }
+            else if (document.getElementById("difference").checked) {
+                value = baseAmount - tipPercent;
+                myOutput = "difference of " + baseAmount + " and " + tipPercent + " is " + value;
+            }
+            else if (document.getElementById("product").checked) {
+                value = baseAmount * tipPercent;
+                myOutput = "product of " + baseAmount + " and " + tipPercent + " is " + value;
+            }
+            else if (document.getElementById("division").checked) {
+                value = baseAmount / tipPercent;
+                myOutput = "division of " + baseAmount + " and " + tipPercent + " is " + value;
+            }
+            else{
+                myOutput="Choose an option";
+            }
+            document.getElementById("calresult").innerHTML = myOutput;
+        }
+    </script>
+    <form">
+        <input type="radio" id="sum" name="calOptions" value="sum" >
+        <label for="sum">Sum</label></br>
+        <input type="radio" id="difference" name="calOptions" value="difference">
+        <label for="difference">diff</label></br>
+        <input type="radio" id="product" name="calOptions" value="product">
+        <label for="product">mult</label></br>
+        <input type="radio" id="division" name="calOptions" value="division">
+        <label for="division">div</label></br>
+        <input type="button" onclick="chooseOp()" value="Calculate">
+    </form>
+    <p id="calresult" style="font-weight: bold;">Calculations results are here.</p>
+</body>
+
+</html>
